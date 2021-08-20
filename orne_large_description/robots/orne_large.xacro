@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="orne_large" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!--Constants for robot dimensions -->
+    <xacro:property name="PI" value="3.1415926535897931" />
+
+    <!-- Import Rviz color -->  
+    <xacro:include filename="$(find orne_large_description)/urdf/materials.xacro" />
+
+    <!-- import gazebo control -->
+    <xacro:include filename="$(find orne_large_description)/urdf/common.gazebo.xacro" />
+
+    <!-- import mobile base -->
+    <xacro:include filename="$(find orne_large_description)/urdf/base/base.urdf.xacro" />
+
+    <!-- import sensors -->
+    <xacro:include filename="$(find orne_large_description)/urdf/sensors/imu/imu.urdf.xacro" />
+    <xacro:include filename="$(find orne_large_description)/urdf/sensors/lrf/lrf.urdf.xacro" />
+
+</robot>

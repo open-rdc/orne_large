@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<robot name="manipulator" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- import gazebo -->
+    <xacro:include filename="$(find orne_large_description)/urdf/wheel/wheel.gazebo.xacro" />
+
+    <!-- import transmission -->
+    <xacro:include filename="$(find orne_large_description)/urdf/wheel/wheel.transmission.xacro" />
+
+    <!-- wheel joint -->
+    <joint name="left_wheel_hinge" type="continuous">
+        <origin xyz="-0.0002 0.305 0.2032" rpy="${-PI/2} 0 0" />
+        <axis xyz="0 0 1" />
+        <parent link="base_link"/>
+        <child link="left_wheel_link"/>
+        <limit effort="32.5" velocity="4.18" />
+    </joint>
+
+    <joint name="right_wheel_hinge" type="continuous">
+        <origin xyz="-0.0002 -0.305 0.2032" rpy="${-PI/2} 0 0" />
+        <axis xyz="0 0 1" />
+        <parent link="base_link"/>
+        <child link="right_wheel_link"/>
+        <limit effort="32.5" velocity="4.18"/>
+    </joint>
+
+    <!-- wheel link -->
+    <link name="left_wheel_link">
+        <inertial>
+            <mass value="9.376312"/>
+            <origin xyz ="0 0 0" />
+            <inertia ixx="0.11786" ixy="0.0" ixz="0.0" iyy="0.11786" iyz="0.0" izz="0.22194"/>
+        </inertial>
+        <visual>
+            <origin xyz="-0.002 -0.07455 0.062" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://orne_large_description/meshes/STL/tire.stl"/>
+            </geometry>
+            <material name="black" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder length="0.1" radius="0.19" />
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="right_wheel_link">
+        <inertial>
+            <mass value="9.376312"/>
+            <origin xyz ="0 0 0" />
+            <inertia ixx="0.11786" ixy="0.0" ixz="0.0" iyy="0.11786" iyz="0.0" izz="0.22194"/>
+        </inertial>
+        <visual>
+            <origin xyz="0.002 -0.07455 -0.062" rpy="0 ${PI} 0" />
+            <geometry>
+                <mesh filename="package://orne_large_description/meshes/STL/tire.stl"/>
+            </geometry>
+            <material name="black" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder length="0.1" radius="0.19" />
+            </geometry>
+        </collision>
+    </link>
+
+</robot>

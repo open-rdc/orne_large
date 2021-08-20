@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot>
+
+    <gazebo reference="lrf_front_link">
+        <sensor type="ray" name="lrf_front">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>720</samples>
+                        <resolution>1</resolution>
+                        <min_angle>${-PI/2}</min_angle>
+                        <max_angle>${PI/2}</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.06</min>
+                    <max>10.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">
+                <topicName>/lrf_front/scan</topicName>
+                <frameName>lrf_front_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="lrf_back_link">
+        <sensor type="ray" name="lrf_back">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>340</samples>
+                        <resolution>1</resolution>
+                        <min_angle>${-PI/3}</min_angle>
+                        <max_angle>${PI/3}</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.06</min>
+                    <max>5.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">
+                <topicName>/lrf_back/scan</topicName>
+                <frameName>lrf_back_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>

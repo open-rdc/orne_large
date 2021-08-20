@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load URDF model -->
+  <arg name="model" default="$(find orne_large_description)/robots/orne_large.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+
+  <!-- Load BLM parameters -->
+  <rosparam file="$(find orne_large_driver)/config/orne_large_driver_with_arduino.yaml" command="load"/>
+
+  <!-- start orne_large_serial -->
+  <node name="orne_large_arduino" pkg="rosserial_python" type="serial_node.py" output="screen"/>
+  
+  <!-- Start Motor driver -->
+  <node name="orne_large_driver" pkg="orne_large_driver" type="orne_large_driver_with_arduino" output="screen" />
+
+  <!-- Start Front URG node -->
+  <node pkg="urg_node" type="urg_node" name="front_urg_node">
+    <param name="frame_id" value="/lrf_front_link"/>
+    <param name="ip_address" value="192.168.2.6"/>
+    <param name="angle_min" value="-1.5707963"/>
+    <param name="angle_max" value="1.5707963"/>
+    <remap from="scan" to="/lrf_front/scan"/>
+  </node>
+
+  <!-- Start Back URG node -->
+  <node pkg="urg_node" type="urg_node" name="back_urg_node">
+    <param name="frame_id" value="/lrf_back_link"/>
+    <param name="serial_port" value="/dev/ttyACM0"/>
+    <param name="angle_min" value="-1.5707963"/>
+    <param name="angle_max" value="1.5707963"/>
+    <remap from="scan" to="/lrf_back/scan"/>
+  </node>
+</launch>
+

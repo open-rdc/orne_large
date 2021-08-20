@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- start mb_driver -->
+    <node name="delay_driver" pkg="orne_large_bringup" type="timed_roslaunch.sh" args="8 orne_large_driver driver_with_arduino.launch" output="screen" />
+
+    <!-- start mb_controller -->
+    <node name="delay_controller" pkg="orne_large_bringup" type="timed_roslaunch.sh" args="12 orne_large_control orne_large_control.launch" output="screen" />
+
+</launch>

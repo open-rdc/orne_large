@@ -1,0 +1,5 @@
+/orne_large_arduino:
+    port: /dev/ttyArduino_Motor
+    baud: 115200
+/orne_large_driver:
+    max_velocity: 2.0

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- import gazebo -->
+    <xacro:include filename="$(find orne_large_description)/urdf/sensors/lrf/lrf.gazebo.xacro" />
+
+    <!-- joint link -->
+    <joint name="lrf_front_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="lrf_front_link" />
+        <origin xyz="0.81 0 0.3025" rpy="${PI} 0 0"/>
+    </joint>
+
+    <joint name="lrf_back_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="lrf_back_link" />
+        <origin xyz="-0.15 0 0.3025" rpy="0 0 ${PI}"/>
+    </joint>
+
+    <!-- lrf link -->
+    <link name="lrf_front_link" />
+    <link name="lrf_back_link" />
+
+</robot>

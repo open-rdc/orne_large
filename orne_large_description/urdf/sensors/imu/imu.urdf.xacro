@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- import gazebo -->
+    <xacro:include filename="$(find orne_large_description)/urdf/sensors/imu/imu.gazebo.xacro" />
+
+    <!-- joint link -->
+    <joint name="imu_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="imu_link" />
+        <origin xyz="0.15 0 0.5025" rpy="0 0 0"/>
+    </joint>
+
+    <!-- imu link -->
+    <link name="imu_link" />
+
+</robot>

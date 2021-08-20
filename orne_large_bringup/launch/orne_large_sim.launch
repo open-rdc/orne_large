@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- load gazebo -->
+    <include file="$(find orne_large_gazebo)/launch/gazebo_orne_large.launch" >
+        <arg name="use_sim_time" value="true"/>
+        <arg name="paused" value="false"/>
+        <arg name="gui" value="true" />
+    </include>
+    <include file="$(find orne_large_control)/launch/orne_large_control.launch" />
+<!--
+    <include file="$(find orne_large_navigation_executer)/launch/ekf_localization.launch" />
+-->
+</launch>
+
